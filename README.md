@@ -1,4 +1,4 @@
-# Sample Hardhat Project
+# ERC-20 Governance Project
 
 This project contains the solution scripts of the week 7 of Alchemy University Ethereum Developer Bootcamp. To be able to run this hardhat project you need to create a .env file and add URL and Private Key in that file (!!! Don't forget to add .env to the .gitignore !!!). 
 
