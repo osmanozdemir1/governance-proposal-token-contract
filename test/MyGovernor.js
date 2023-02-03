@@ -23,6 +23,11 @@ describe("MyGovernor", function () {
 
     await token.delegate(owner.address);
 
+    console.log("future: ", futureAddress);
+    console.log("governor: ", governor.address);
+    console.log("token: ", token.address);
+    console.log("owner: ", owner.address);
+
     return { governor, token, owner, otherAccount };
   }
 
@@ -49,7 +54,7 @@ describe("MyGovernor", function () {
       const { proposalId } = event.args;
 
       // wait for the 1 block voting delay
-      await hre.network.provider.send("evm_mine");
+      await hre.network.provider.send("hardhat_mine", ["0x5"]);
       
       return { ...deployValues, proposalId } 
     }
@@ -70,8 +75,8 @@ describe("MyGovernor", function () {
         const receipt = await tx.wait();
         const voteCastEvent = receipt.events.find(x => x.event === 'VoteCast');
         
-        // wait for the 1 block voting period
-        await hre.network.provider.send("evm_mine");
+        // wait for the 5 block voting period
+        await hre.network.provider.send("hardhat_mine", ["0x5"]);
 
         return { ...proposingValues, voteCastEvent }
       }
@@ -85,6 +90,9 @@ describe("MyGovernor", function () {
 
       it("should allow executing the proposal", async () => {
         const { governor, token, owner } = await loadFixture(afterVotingFixture);
+
+        // wait for the voting period of 2 days (14400 blocks) to end
+        await hre.network.provider.send("hardhat_mine", ["0x5000"]);
 
         await governor.execute(
           [token.address],

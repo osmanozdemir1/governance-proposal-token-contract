@@ -1,13 +1,5 @@
 # Sample Hardhat Project
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+This project contains the solution scripts of the week 7 of Alchemy University Ethereum Developer Bootcamp. To be able to run this hardhat project you need to create a .env file and add URL and Private Key in that file (!!! Don't forget to add .env to the .gitignore !!!). 
 
-Try running some of the following tasks:
-
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
-```
+In the /scripts folder you can deploy, execute, make proposal and vote. You need to change the address variables when you deploy your own contract.
